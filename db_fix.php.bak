@@ -1,0 +1,14 @@
+<?php
+include 'db.php';
+
+// user_id এবং balance কলাম যোগ করার কমান্ড
+$sql1 = "ALTER TABLE users ADD COLUMN IF NOT EXISTS user_id VARCHAR(50) AFTER id";
+$sql2 = "ALTER TABLE users ADD COLUMN IF NOT EXISTS balance DECIMAL(10,2) DEFAULT 0.00 AFTER password";
+
+if (mysqli_query($conn, $sql1) && mysqli_query($conn, $sql2)) {
+    echo "<h1 style='color:green; text-align:center;'>অভিনন্দন! ডাটাবেজ আপডেট হয়েছে।</h1>";
+    echo "<p style='text-align:center;'>এখন রেজিস্ট্রেশন করলে আর 'Unknown column user_id' এরর আসবে না।</p>";
+} else {
+    echo "<h1 style='color:red;'>ভুল হয়েছে:</h1> " . mysqli_error($conn);
+}
+?>

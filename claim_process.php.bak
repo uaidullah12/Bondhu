@@ -1,0 +1,25 @@
+<?php
+include 'db.php';
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $inv_id = mysqli_real_escape_string($conn, $_POST['inv_id']);
+    $u_id = $_SESSION['user_id'];
+
+    // কার্ডের তথ্য বের করা
+    $query = mysqli_query($conn, "SELECT * FROM investments WHERE id='$inv_id' AND user_id='$u_id'");
+    $card = mysqli_fetch_assoc($query);
+
+    if ($card) {
+        $pkg_name = $card['package_name'];
+        // প্যাকেজ অনুযায়ী ইনকাম
+        $income = ($pkg_name == 'গোল্ড কার্ড') ? 200.00 : 100.00;
+
+        // ব্যালেন্স আপডেট এবং সময় রিসেট
+        mysqli_query($conn, "UPDATE users SET balance = balance + $income WHERE user_id='$u_id'");
+        mysqli_query($conn, "UPDATE investments SET last_claim_time = NOW() WHERE id='$inv_id'");
+
+        echo "<script>alert('৳ $income আপনার ব্যালেন্সে যোগ হয়েছে!'); window.location='index.php';</script>";
+    }
+}
+?>

@@ -1,0 +1,5 @@
+<?php
+// আপনার রেফার করা মেম্বার গুনে বের করা
+$total_members = mysqli_num_rows(mysqli_query($conn, "SELECT id FROM users WHERE refer_by='$u_id'"));
+?>
+<p>মোট মানুষ: <b><?php echo $total_members; ?></b></p>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My WiFi Portal</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; text-align: center; padding: 20px; }
+        h1 { color: #1a73e8; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 30px; }
+        .wifi-card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 250px; }
+        .qrcode { margin: 15px auto; display: flex; justify-content: center; }
+        .ssid { font-weight: bold; font-size: 1.2rem; margin-bottom: 5px; }
+        .pass { color: #666; font-size: 0.9rem; margin-bottom: 10px; }
+        .scan-text { font-size: 0.8rem; color: #1a73e8; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>📶 My WiFi Dashboard</h1>
+    <p>নিচের কিউআর কোডটি স্ক্যান করলেই ওয়াই-ফাই কানেক্ট হয়ে যাবে</p>
+
+    <div class="container" id="wifi-list">
+        </div>
+
+    <script>
+        // আপনার ওয়াই-ফাই নেটওয়ার্কগুলোর তালিকা এখানে দিন
+        const myNetworks = [
+            { ssid: "Home_WiFi", pass: "12345678", encryption: "WPA" },
+            { ssid: "Office_Net", pass: "admin123", encryption: "WPA" },
+            { ssid: "My_Hotspot", pass: "password99", encryption: "WPA" }
+        ];
+
+        const listContainer = document.getElementById('wifi-list');
+
+        myNetworks.forEach((net, index) => {
+            // ১. কার্ড তৈরি করা
+            const card = document.createElement('div');
+            card.className = 'wifi-card';
+            
+            // ২. ওয়াই-ফাই স্পেসিফিকেশন (এই ফরম্যাটটি ফোন চিনতে পারে)
+            // ফরম্যাট: WIFI:S:<SSID>;T:<TYPE>;P:<PASSWORD>;;
+            const qrValue = `WIFI:S:${net.ssid};T:${net.encryption};P:${net.pass};;`;
+
+            card.innerHTML = `
+                <div class="ssid">${net.ssid}</div>
+                <div class="pass">Pass: ${net.pass}</div>
+                <div id="qrcode-${index}" class="qrcode"></div>
+                <div class="scan-text">Scan to Connect</div>
+            `;
+
+            listContainer.appendChild(card);
+
+            // ৩. কিউআর কোড জেনারেট করা
+            new QRCode(document.getElementById(`qrcode-${index}`), {
+                text: qrValue,
+                width: 150,
+                height: 150
+            });
+        });
+    </script>
+
+</body>
+</html>

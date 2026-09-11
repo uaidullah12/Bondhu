@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বেতন ও বোনাস - আল খিদমাহ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: sans-serif; background: #0d1b3e; color: white; margin: 0; padding-bottom: 80px; }
+        .salary-header { background: linear-gradient(135deg, #1a2a6c, #b21f1f); padding: 30px 20px; text-align: center; border-radius: 0 0 30px 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .bonus-pool { background: rgba(255, 215, 0, 0.1); border: 2px solid #ffd700; margin: 20px; padding: 20px; border-radius: 20px; text-align: center; position: relative; overflow: hidden; }
+        .bonus-pool h3 { color: #ffd700; margin: 0; font-size: 18px; }
+        .bonus-amount { font-size: 32px; font-weight: bold; margin: 10px 0; color: #fff; }
+        .salary-card { background: white; color: #333; margin: 15px; padding: 20px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .salary-info h4 { margin: 0; color: #1a2a6c; }
+        .salary-info p { margin: 5px 0; font-size: 13px; color: #666; }
+        .claim-btn { background: #27ae60; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        
+        /* বটম নেভিগেশন */
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: #1a2c5e; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.1); }
+        .nav-link { text-align: center; color: #a4b0be; text-decoration: none; font-size: 11px; }
+        .nav-link i { font-size: 20px; display: block; margin-bottom: 3px; }
+        .nav-link.active { color: #fdbb2d; }
+    </style>
+</head>
+<body>
+
+<div class="salary-header">
+    <i class="fas fa-money-check-alt" style="font-size: 40px; margin-bottom: 10px;"></i>
+    <h2>আপনার মাসিক স্যালারি রিপোর্ট</h2>
+</div>
+
+<div class="bonus-pool">
+    <h3>ইন্টেলের মাসিক বোনাস পুল</h3>
+    <div class="bonus-amount">৳ ২,৮৮৫,৫৫০.০০</div>
+    <p style="font-size: 12px; opacity: 0.8;">সবাইকে উৎসাহিত করুন এবং বোনাস পুলের অংশ নিন!</p>
+</div>
+
+<div class="salary-card">
+    <div class="salary-info">
+        <h4>টিম লিডার স্যালারি</h4>
+        <p>যোগ্যতা: ৫০ জন একটিভ মেম্বার</p>
+    </div>
+    <button class="claim-btn">৳৫০০০</button>
+</div>
+
+<div class="salary-card">
+    <div class="salary-info">
+        <h4>সুপারভাইজার বোনাস</h4>
+        <p>যোগ্যতা: ১০০ জন একটিভ মেম্বার</p>
+    </div>
+    <button class="claim-btn">৳১২০০০</button>
+</div>
+
+<div class="bottom-nav">
+    <a href="index.php" class="nav-link"><i class="fas fa-home"></i>হোম</a>
+    <a href="invest.php" class="nav-link"><i class="fas fa-chart-bar"></i>বিনিয়োগ</a>
+    <a href="salary.php" class="nav-link active"><i class="fas fa-money-bill-wave"></i>বেতন</a>
+    <a href="team.php" class="nav-link"><i class="fas fa-users"></i>দল</a>
+    <a href="profile.php" class="nav-link"><i class="fas fa-user-circle"></i>আমার</a>
+</div>
+
+</body>
+</html>

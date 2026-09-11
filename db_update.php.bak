@@ -1,0 +1,13 @@
+<?php
+include 'db.php';
+
+// 'user_id' কলামটি যোগ করার কমান্ড
+$sql = "ALTER TABLE users ADD COLUMN IF NOT EXISTS user_id VARCHAR(50) AFTER id";
+
+if (mysqli_query($conn, $sql)) {
+    echo "<h1 style='color:green; text-align:center;'>সফলভাবে কলাম যোগ করা হয়েছে!</h1>";
+    echo "<p style='text-align:center;'>এখন রেজিস্ট্রেশন করার চেষ্টা করুন, আশা করি কাজ করবে।</p>";
+} else {
+    echo "<h1 style='color:red;'>এরর:</h1> " . mysqli_error($conn);
+}
+?>

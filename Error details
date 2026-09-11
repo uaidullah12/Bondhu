@@ -1,0 +1,28 @@
+VER: 2.19.4(25121085)
+PERMISSION: APP
+ABI: arm64-v8a
+MODEL: 2404ARN45A
+SDK: 36
+RELEASE: 16
+TARGET_SDK: 30
+---StackTrace---
+l.۠ᩴ᩻: [1080,70] no viable alternative at input 'Landroid'
+	at l.ܺ᩶᩻.ۡ(O5JD:25)
+	at l.ۧ۫֨.ۡ(Z4PZ:186)
+	at l.۫ۙۢ.ᩳۙ(O6AY:4547)
+	at l.۫ۙۢ.ۚۙ(O6AY:4286)
+	at l.۫ۙۢ.ۨۙ(O6AY:7879)
+	at l.۫ۙۢ.ۛۡ(O6AY:14667)
+	at l.۫ۙۢ.֫ۙ(O6AY:11150)
+	at l.۫ۙۢ.۫ۙ(O6AY:2235)
+	at l.۫ۙۢ.᩹֡(O6AY:1955)
+	at l.۫ۙۢ.᩷ۙ(O6AY:1753)
+	at l.۫ۙۢ.ܶ֡(O6AY:644)
+	at l.֡᩶᩻.ۡ(W5PL:97)
+	at l.᩵ۚ֫.ۡ(O1K3:1178)
+	at l.᩵ۚ֫.ۡ(O1K3:1130)
+	at l.ۚۚ֫.ܶ(P1K2:1031)
+	at l.ܿۖ᩹.run(D4W8:115)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1154)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:652)
+	at java.lang.Thread.run(Thread.java:1563)

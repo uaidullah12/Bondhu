@@ -1,0 +1,44 @@
+<?php
+include 'db.php';
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$u_id = $_SESSION['user_id'];
+$msg = "";
+
+if (isset($_POST['redeem'])) {
+    $code = mysqli_real_escape_string($conn, $_POST['code']);
+    
+    // ১. অ্যাডমিন কোড অনুযায়ী 'bonus_codes' টেবিল থেকে তথ্য খোঁজা
+    $res = mysqli_query($conn, "SELECT * FROM bonus_codes WHERE code='$code'");
+    
+    if ($res && mysqli_num_rows($res) > 0) {
+        $gift = mysqli_fetch_assoc($res);
+        $amount = $gift['amount'];
+        $limit = $gift['usage_limit'];
+
+        // ২. চেক করা হচ্ছে এই কোডটি কি ব্যবহারের সীমা (Limit) অতিক্রম করেছে কি না
+        if ($limit > 0) {
+            // ৩. ইউজারের ব্যালেন্স বাড়ানো (নিশ্চিত করুন আপনার 'users' টেবিলে 'balance' কলাম আছে)
+            $update_user = mysqli_query($conn, "UPDATE users SET balance = balance + $amount WHERE user_id='$u_id'");
+            
+            // ৪. বোনাস কোডের লিমিট ১ কমানো হচ্ছে
+            $update_code = mysqli_query($conn, "UPDATE bonus_codes SET usage_limit = usage_limit - 1 WHERE code='$code'");
+            
+            if ($update_user && $update_code) {
+                $msg = "<p style='color:green; font-weight:bold; background:#e8f5e9; padding:10px; border-radius:10px;'>অভিনন্দন! ৳$amount আপনার ব্যালেন্সে যোগ হয়েছে।</p>";
+            } else {
+                $msg = "<p style='color:red;'>ডাটাবেজ আপডেট করতে সমস্যা হয়েছে।</p>";
+            }
+        } else {
+            $msg = "<p style='color:red; font-weight:bold; background:#ffebee; padding:10px; border-radius:10px;'>দুঃখিত! এই কোডটির ব্যবহারের সীমা শেষ হয়ে গেছে।</p>";
+        }
+    } else {
+        $msg = "<p style='color:red; font-weight:bold; background:#ffebee; padding:10px; border-radius:10px;'>কোডটি সঠিক নয় অথবা ভুল লিখেছেন।</p>";
+    }
+}
+?>
